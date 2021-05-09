@@ -2,14 +2,15 @@ class Product {
   protected _id: number;
   protected _provider: string;
   protected _name: string;
-  private _avaliable: number;
-  private _price: number;
-  private _details: string;
+  protected _avaliable: boolean;
+  protected _price: number;
+  protected _details: string;
+
   constructor(
     id: number,
     provider: string,
     name: string,
-    avaliable: number,
+    avaliable: boolean,
     price: number,
     details: string
   ) {

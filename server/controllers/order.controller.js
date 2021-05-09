@@ -1,50 +1,64 @@
-const db = require("../db/dbConnector");
+const OrdersQueries = require ("../db/dbQueriesOrders");
+const db = require ("../db/dbConnector");
+
 //import { Request, Response } from 'express';
 //import {Order}  from "../Order";
 
-export default class orderController {
+class orderController {
   async createOrder (req, res) { //: Promise<void> 
-    const {
-      id,
-      delivery_adress,
-      comment,
-      product_amount,
-      paid,
-      phone,
-      product_id,
-    } = req.body;
-    const newOrder = await db.query(
-      "INSERT INTO orders (id, delivery_adress, comment, product_amount, paid, phone, product_id) values ($1, $2, $3, $4, $5, $6, $7)  RETURNING *",
-      [id, delivery_adress, comment, product_amount, paid, phone, product_id]
-    );
+    //const { id, delivery_adress, comment, product_amount, paid, phone, product_id,
+    //} = req.body;   
+   try {
+    const newOrder = await OrdersQueries.createOrderDb(req.body); 
     res.json(newOrder.rows[0]);
+    } catch (err) {
+      console.log(err);  //Change console logs after added cath on client side
+   // throw new Error('smth wrong with create')
+      }
   }
-
+  
   async getOrders(req, res) {    //Order[] : Promise<void> 
-    const orders = await db.query("SELECT * FROM orders");
+  try {
+    const orders = await OrdersQueries.getOrdersDb();
     res.json(orders.rows);
-    //return 
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+    //throw new Error('smth wrong with get all orders')
+    }
   }
 
   async getOneOrder(req, res) {       //Order  : Promise<void> 
     const id = req.params.id;
-    const order = await db.query("SELECT * FROM orders where id = $1", [id]);
+    try {
+    const order = await OrdersQueries.getOneOrderDb(id);
     res.json(order.rows[0]);
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+    //throw new Error('smth wrong with get one order')
+    }
   }
 
-  async editOrder(req, res) {     //: Promise<void> 
-    const { id, delivery_adress, comment } = req.body;
-    const order = await db.query(
-      "UPDATE orders set delivery_adress = $1, comment = $2 where id = $3 RETURNING *",
-      [delivery_adress, comment, id]
-    );
+  async editOrder(req, res) {     
+    try {
+    const order = await OrdersQueries.editOrderDb(req.body);
     res.json(order.rows[0]);
+    } catch (err) {
+      console.log(err);  //Change console logs after added cath on client side
+    //throw new Error('smth wrong with edit order')
+      }
   }
 
-  async deleteOrder(req, res) {    //: Promise<void>  
+  async deleteOrder(req, res) {    
     const id = req.query.id;
-    const order = await db.query("DELETE FROM orders where id = $1", [id]);
+    try {
+    const order = await OrdersQueries.deleteOrderDb(id);
     res.json(order.rows[0]);
-  }
+    } catch (err) {
+      console.log(err);  //Change console logs after added cath on client side
+    //throw new Error('smth wrong with delete order')
+      }
+  } 
 }
+
+module.exports = new orderController();
 

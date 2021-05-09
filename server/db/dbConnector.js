@@ -1,4 +1,8 @@
 const Pool = require("pg").Pool;
+const dotenv = require ("dotenv");
+
+dotenv.config();
+
 const pool = new Pool({
   user: "postgres",
   password: "luffythebest1",
@@ -7,4 +11,7 @@ const pool = new Pool({
   database: "first_project",
 });
 
+
 module.exports = pool;
+
+

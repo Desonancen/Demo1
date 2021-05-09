@@ -1,40 +1,56 @@
-import db from "../db/dbConnector";
+const ProductsQueries = require ("../db/dbQueriesProducts");
 
 class productController {
   async createProduct(req, res) {
-    const { id, provider, name, price, details, avaliable } = req.body;
-    const newItem = await db.query(
-      "INSERT INTO product (id, provider, name, price, details, avaliable) values ($1, $2, $3, $4, $5, $6) RETURNING *",
-      [id, provider, name, price, details, avaliable]
-    );
+    try {
+    const newItem = await ProductsQueries.createProductDb(req.body);
     res.json(newItem.rows[0]);
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+  //throw new Error('smth wrong with delete order')
+    }
   }
 
   async getProducts(req, res) {
-    const products = await db.query("SELECT * FROM product");
+    try {
+    const products = await ProductsQueries.getProductsDb();
     res.json(products.rows);
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+  //throw new Error('smth wrong with delete order')
+    }
   }
 
   async getOneProduct(req, res) {
     const id = req.params.id;
-    const product = await db.query("SELECT * FROM product where id = $1", [id]);
+    try {
+    const product = await ProductsQueries.getOneProductDb(id);
     res.json(product.rows[0]);
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+  //throw new Error('smth wrong with delete order')
+    }
   }
 
   async editProduct(req, res) {
-    const {name, price, details, avaliable} = req.body;
-    const id = req.params.id;
-    const product = await db.query(
-      "UPDATE product set name = $2, price = $3, details = $4, avaliable = $5 where id = $1 RETURNING *",
-      [id, name, price, details, avaliable ]
-    );
+    try {
+    const product = await ProductsQueries.editProductDb(req.body);
     res.json(product.rows[0]);
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+  //throw new Error('smth wrong with delete order')
+    }
   }
 
   async deleteProduct(req, res) {
     const id = req.params.id;
-    const product = await db.query("DELETE FROM product where id = $1", [id]);
+    try {
+    const product = await ProductsQueries.deleteProductDb(id);
     res.json(product.rows[0]);
+  } catch (err) {
+    console.log(err);  //Change console logs after added cath on client side
+  //throw new Error('smth wrong with delete order')
+    }
   }
 }
 
