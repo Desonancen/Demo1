@@ -1,5 +1,4 @@
 const OrdersQueries = require ("../db/dbQueriesOrders");
-const db = require ("../db/dbConnector");
 
 //import { Request, Response } from 'express';
 //import {Order}  from "../Order";

@@ -13,9 +13,12 @@ app.use(express.json());
 app.use("/api", productRouter);
 app.use("/api", orderRouter);
 
-//app.use(function (err, req, res, next) {
-//  console.log(err.message)
- // })
 
 // Listen to the port
-app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
+const start = async () => {
+    try {
+        app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
+    } catch (e) {
+        console.log(e)
+    }
+}
