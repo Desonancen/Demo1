@@ -6,7 +6,7 @@ import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
-      {path: '', redirectTo: '/', pathMatch: 'full}'},
+      {path: '', redirectTo: '/product', pathMatch: 'full'},
       {path: 'product', component: ProductComponent},
     ]
   },
