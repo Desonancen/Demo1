@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 var Order = /** @class */ (function () {
     function Order(id, name, phone, totalPrice, comment, productAmount) {
         this._id = id;
@@ -9,3 +11,4 @@ var Order = /** @class */ (function () {
     }
     return Order;
 }());
+exports["default"] = Order;

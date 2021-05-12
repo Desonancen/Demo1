@@ -8,9 +8,12 @@
     "sourceMap": false,
     "traceResolution": false,
     "noImplicitAny": false,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "allowJs": true,
+    "typeRoots": [
+      "node_modules/@types"]
   },
   "include": [
     "src/**/*"
-  ]
+, "controllers", "db", "routes", "app.js", "app.ts"  ]
 }

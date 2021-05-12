@@ -1,4 +1,4 @@
-class Order {
+export default class Order {
   protected _id: number;
   protected _name: string;
   protected _phone: number;

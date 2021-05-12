@@ -8,8 +8,8 @@ class OrdersQueries {
         )
     };
 
-    getOrdersDb = () => {
-        return db.query("SELECT * FROM orders")
+    getOrdersDb = async () => {
+        return await db.query("SELECT * FROM orders")
     };
 
     getOneOrderDb = (id) => {

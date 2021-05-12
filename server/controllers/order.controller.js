@@ -5,14 +5,11 @@ const OrdersQueries = require ("../db/dbQueriesOrders");
 
 class orderController {
   async createOrder (req, res) { //: Promise<void> 
-    //const { id, delivery_adress, comment, product_amount, paid, phone, product_id,
-    //} = req.body;   
    try {
     const newOrder = await OrdersQueries.createOrderDb(req.body); 
     res.json(newOrder.rows[0]);
     } catch (err) {
       console.log(err);  //Change console logs after added cath on client side
-   // throw new Error('smth wrong with create')
       }
   }
   
