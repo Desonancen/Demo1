@@ -19,7 +19,6 @@ class orderController {
     res.json(orders.rows);
   } catch (err) {
     console.log(err);  //Change console logs after added cath on client side
-    //throw new Error('smth wrong with get all orders')
     }
   }
 
@@ -30,7 +29,6 @@ class orderController {
     res.json(order.rows[0]);
   } catch (err) {
     console.log(err);  //Change console logs after added cath on client side
-    //throw new Error('smth wrong with get one order')
     }
   }
 
@@ -40,7 +38,6 @@ class orderController {
     res.json(order.rows[0]);
     } catch (err) {
       console.log(err);  //Change console logs after added cath on client side
-    //throw new Error('smth wrong with edit order')
       }
   }
 
@@ -51,7 +48,6 @@ class orderController {
     res.json(order.rows[0]);
     } catch (err) {
       console.log(err);  //Change console logs after added cath on client side
-    //throw new Error('smth wrong with delete order')
       }
   } 
 }
