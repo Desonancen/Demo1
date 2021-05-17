@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ProductComponent } from './product/product.component';
-import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
-      {path: '', redirectTo: '/product', pathMatch: 'full'},
-      {path: 'product', component: ProductComponent},
+      {path: '', redirectTo: '/', pathMatch: 'full'},
+      {path: '', component: HomePageComponent},
+      {path: 'order', component: OrderPageComponent}
     ]
   },
   {
@@ -16,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
