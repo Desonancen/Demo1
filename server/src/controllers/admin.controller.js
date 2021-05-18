@@ -5,7 +5,7 @@ require ("dotenv").config();
 const secret = process.env.SECRET_KEY
 
 const generateJwt = (email, password) => {
-  return jwt.sign({ email, password }, process.env.SECRET_KEY, { expiresIn: '2h' })
+  return jwt.sign({ email, password }, "process.env.SECRET_KEY", { expiresIn: '2h' })
 }
 
 class adminController {
@@ -20,25 +20,23 @@ class adminController {
     };
 
     const hashPassword = bcrypt.hashSync(admin.password, 2)
-
-    const validEmail = await compareSync(email, admin.email)  
-    if (!validEmail) {
+    
+    if (email !== admin.email ) {
       return res.status(400).json({ message: 'You write a wrong email' })
     }
-
     const validPassword = await bcrypt.compareSync(password, hashPassword) //or add this.admin.password
 
     if (!validPassword) {
       return res.status(400).json({ message: 'Wrong password' })
     }
-
-    const token = await generateJwt("nik@mail.ru", "123456")
+    
+    const token = await generateJwt(admin.email, admin.password)
 
     return res.status(200).json({token, admin})
-    } catch {  
-    console.log(res.json({token}));
+  } catch {  
+      console.log(res.json({token}));
       
-      //res.status(400).json({ message: 'Login error' })
+      res.status(400).json({ message: 'Login error' })
     }
   }
 }

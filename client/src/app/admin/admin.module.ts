@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { OrdersPageComponent } from "./orders-page/orders-page.component";
 import { AdminLayoutComponent } from "./shared/admin-layout/admin-layout.component";
@@ -22,8 +21,6 @@ import { AuthGuard } from "./shared/services/auth.guard";
     imports: [
         CommonModule,
         SharedModule,
-        FormsModule,
-        ReactiveFormsModule,
         RouterModule.forChild([
             {
                 path: '', component: AdminLayoutComponent, children: [

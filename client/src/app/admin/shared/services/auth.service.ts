@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
-import { dbAuthResponse, User } from "../../../shared/interfaces";
+import { dbAuthResponse, Admin } from "../../../shared/interfaces";
 import { Observable, Subject, throwError } from "rxjs";
-import {catchError, tap} from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 
 @Injectable() 
@@ -23,9 +23,9 @@ export class AuthService {
         return localStorage.getItem('db-token')
     }
 
-    login(user: User): Observable<any> {
-        user.returnSecureToken = true
-        return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, user)
+    login(admin: Admin): Observable<any> {
+        admin.returnSecureToken = true
+        return this.http.post(`${environment.dbUrl}/login`, admin)
         .pipe(
             tap<any>(this.setToken),
             catchError(this.handleError.bind(this))
@@ -41,7 +41,7 @@ export class AuthService {
     }
 
     private handleError(error: HttpErrorResponse) {
-       const {message} = error.error.error
+       const message = error.message
 
        switch (message) {
            case 'EMAIL_NOT_FOUND':
@@ -60,7 +60,7 @@ export class AuthService {
     private setToken(response: dbAuthResponse | null) {
         if (response) {
         const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000)
-        localStorage.setItem('db-token', response.idToken)
+        localStorage.setItem('db-token', response.token)
         localStorage.setItem('db-toke-exp', expDate.toString()) 
         } else {
             localStorage.clear()

@@ -1,1 +1,50 @@
-<p>order-page works!</p>
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Order Info</h1>
+        
+            <div class="form-control"
+            [ngClass]="{invalid: form.get('name')!.touched && form.get('name')!.invalid}"
+            >
+                <label for="name">Name:</label>
+                <input id="name" type="text" formControlName="name">
+                <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" 
+                class="validation">
+                    <small *ngIf="form.get('name')?.errors?.required">Enter name</small>
+                </div>
+            </div>
+
+            <div class="form-control"
+            [ngClass]="{invalid: form.get('phone')!.touched && form.get('phone')!.invalid}"
+            >
+                <label for="phone">Phone:</label>
+                <input id="phone" type="tel" formControlName="phone">
+                <div *ngIf="form.get('phone')!.touched && form.get('phone')!.invalid" 
+                class="validation">
+                    <small *ngIf="form.get('phone')?.errors?.required">Enter phone</small>
+                </div>
+            </div>
+
+            <div class="form-control"
+            [ngClass]="{invalid: form.get('address')!.touched && form.get('address')!.invalid}"
+            >
+                <label for="address">Address:</label>
+                <input id="address" type="text" formControlName="address">
+                <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" 
+                class="validation">
+                    <small *ngIf="form.get('address')?.errors?.required">Enter delivery address</small>
+                </div>
+            </div>
+
+            <div class="form-control"
+            [ngClass]="{invalid: form.get('comment')!.touched && form.get('comment')!.invalid}"
+            >
+                <label for="comment">Comment:</label>
+                <textarea id="comment" type="text" formControlName="comment"></textarea>
+                <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" 
+                class="validation">
+                    <small *ngIf="form.get('comment')?.errors?.maxLength">Length must be not more then 30 symbols</small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid">Make order</button>
+        
+</form>

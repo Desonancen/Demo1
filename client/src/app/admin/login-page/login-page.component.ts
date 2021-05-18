@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { User } from 'src/app/shared/interfaces';
+import { Admin } from 'src/app/shared/interfaces';
 import { AuthService } from 'src/app/admin/shared/services/auth.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.queryParams.subscribe( (params: Params) => {
       if (params['loginAgain']) {
         this.message = 'Please write data'
@@ -40,12 +40,12 @@ export class LoginPageComponent implements OnInit {
     }
     this.submitted = true
 
-    const user: User = {
+    const admin: Admin = {
       email: this.form.value.email,
       password: this.form.value.password
     }
 
-    this.auth.login(user).subscribe( () => {
+    this.auth.login(admin).subscribe( () => {
       this.form.reset()
       this.router.navigate(['/admin', 'orders'])
       this.submitted = false
