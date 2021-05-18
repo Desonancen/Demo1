@@ -1,7 +1,38 @@
-<section class="products">
-<app-product></app-product>
-<app-product></app-product>
-<app-product></app-product>
-<app-product></app-product>
-<app-product></app-product>
+<section class="products"><!-- *ngIf="ordes.length; else loading"-->
+            <div class="form-control">
+                <input type="text" placeholder="Find product..." [(ngModel)]="searchStr" > <!---->
+            </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Provider</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Avaliable</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor ="let product of products | searchProducts:searchStr; let idx = index">   <!---->
+                    <td>{{ +product.id+1 }}</td>
+                    <td>{{product.provider}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.details}}</td>
+                    <td>{{product.avaliable}}</td>
+                    <td>
+                        <button class="btn btn-link open"
+                        [routerLink]="['/order', product.id]"
+                        >
+                         Buy now  
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <ng-template #loading>
+            <p class="text-center">Loading...</p>
+        </ng-template>
 </section>

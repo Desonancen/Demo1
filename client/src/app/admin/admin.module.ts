@@ -6,16 +6,17 @@ import { OrdersPageComponent } from "./orders-page/orders-page.component";
 import { AdminLayoutComponent } from "./shared/admin-layout/admin-layout.component";
 import { LoginPageComponent } from './login-page/login-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
-import { AuthService } from "./shared/services/auth.service";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
+import { SearchPipe } from "./shared/search.pipe";
 
 @NgModule({
     declarations: [
         AdminLayoutComponent,
         OrdersPageComponent,
         LoginPageComponent,
-        EditPageComponent
+        EditPageComponent,
+        SearchPipe
     ],
     
     imports: [
@@ -32,7 +33,7 @@ import { AuthGuard } from "./shared/services/auth.guard";
             }
         ])
     ],
-    providers: [AuthService, AuthGuard],
+    providers: [AuthGuard],
     exports: [RouterModule]
 })
 

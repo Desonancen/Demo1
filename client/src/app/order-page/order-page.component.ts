@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Order } from '../shared/interfaces';
-import { OrdersService } from '../shared/orders.service';
+import { OrdersService } from '../shared/services/orders.service';
 
 @Component({
   selector: 'app-order-page',
@@ -19,7 +19,8 @@ export class OrderPageComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
-      comment: new FormControl(null, Validators.maxLength(30))
+      comment: new FormControl(null, Validators.maxLength(30)),
+      paid: new FormControl(false)
     })
   }
 
@@ -27,9 +28,8 @@ export class OrderPageComponent implements OnInit {
     if (this.form.invalid) {
       return
     }
-    const order: Order = {
 
-      id: 29,
+    const order: Order = {
       name: this.form.value.name,
       phone: this.form.value.phone,
       created_date: new Date(),
@@ -37,7 +37,7 @@ export class OrderPageComponent implements OnInit {
       total_price: 5000,
       comment: this.form.value.comment,
       product_amount: 2,
-      paid: true,
+      paid: this.form.value.paid,
       product_id: 2
     }
 

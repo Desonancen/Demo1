@@ -3,8 +3,8 @@ const db = require ("./dbConnector");
 class OrdersQueries {
 
     createOrderDb = async(rest) => { return await db.query(
-        "INSERT INTO orders (id, name, created_date, delivery_address, total_price, comment, product_amount, paid, phone, product_id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)  RETURNING *",
-        [rest.id, rest.name, rest.created_date, rest.delivery_address, rest.total_price, rest.comment, rest.product_amount, rest.paid, rest.phone, rest.product_id]
+        "INSERT INTO orders ( name, created_date, delivery_address, total_price, comment, product_amount, paid, phone, product_id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)  RETURNING *",
+        [rest.name, rest.created_date, rest.delivery_address, rest.total_price, rest.comment, rest.product_amount, rest.paid, rest.phone, rest.product_id]
         )
     };
 

@@ -3,13 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { ProductComponent } from './shared/components/product/product.component';
 
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
-      {path: 'order', component: OrderPageComponent}
+      {path: 'order', component: OrderPageComponent},
+      {path: 'product', component: ProductComponent}
     ]
   },
   {

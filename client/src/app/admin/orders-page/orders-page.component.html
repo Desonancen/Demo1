@@ -1,1 +1,41 @@
-<p>orders-page works!</p>
+<div> <!-- *ngIf="ordes.length; else loading"-->
+    <div class="form-control">
+        <input type="text" placeholder="Find order..." [(ngModel)]="searchStr" > <!---->
+    </div>
+<table>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Date</th>
+            <th>Details</th>
+            <th>Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let order of orders | searchOrders:searchStr; let idx = index">   <!---->
+            <td>1</td>
+            <td>{{order.name}}</td>
+            <td>{{order.phone}}</td>
+            <td>{{order.delivery_address}}</td>
+            <td>{{order.created_date | date:'medium'}}</td>
+            <td>{{order.comment}}</td>
+            <td>{{order.paid}}</td>
+            <td>
+                <button class="btn btn-link open"
+                [routerLink]="['/admin', 'order', order.id, 'edit']"
+                >
+                 Edit order   
+                </button>
+                <a class="delete" (click)="remove(order.id)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<ng-template #loading>
+    <p class="text-center">Loading...</p>
+</ng-template>

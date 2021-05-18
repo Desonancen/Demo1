@@ -27,7 +27,7 @@ export interface DbCreateResponse {
 }
 
 export interface Product {
-    id?: number,
+    id: number,
     provider: string,
     name: string,
     avaliable: boolean,
