@@ -28,8 +28,7 @@ export class ProductsService {
             .keys(response)
             .map(key => ({
                 ...response[key],
-                id: key,
-                date: new Date(response[key].date)
+                id: key
             }))
             
         }))
@@ -37,15 +36,15 @@ export class ProductsService {
     
 
     //Need to change smth in thi method
-    getById(id: string ) {
-        return this.http.get<Product>(`${environment.dbUrl}/product/${id}`)
-        .pipe(map( (product: Product) => {
-            return{
-              ...product, id,
-              created_date: new Date()
-          }
-      }))
-    }
+    //getById(id: string ) {
+    //    return this.http.get<Product>(`${environment.dbUrl}/product/${id}`)
+    //    .pipe(map( (product: Product) => {
+    //        return{
+    //          ...product, id,
+    //          created_date: new Date()
+    //      }
+    //  }))
+   //}
 
     //Check how it work on server side and db
     remove(id: string): Observable<void> {

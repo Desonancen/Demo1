@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Order } from '../shared/interfaces';
-import { OrdersService } from '../shared/services/orders.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Order, Product } from '../../interfaces';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
   selector: 'app-order-page',
@@ -12,9 +13,17 @@ export class OrderPageComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(private ordersSerice: OrdersService) { }
+  //product_info: Product = JSON.parse(sessionStorage["key"])
+
+  constructor(private ordersSerice: OrdersService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe( (params: Params) => {
+      console.log('Params',params.id);
+      
+    }) 
+
     this.form = new FormGroup( {
       name: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
@@ -22,6 +31,12 @@ export class OrderPageComponent implements OnInit {
       comment: new FormControl(null, Validators.maxLength(30)),
       paid: new FormControl(false)
     })
+  }
+
+  getProductInfo() {
+    const productInfo = sessionStorage.getItem("product-info")
+    console.log(productInfo);
+    
   }
 
   submit() {
