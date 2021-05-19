@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from '../shared/interfaces';
 import { ProductsService } from '../shared/services/products.service';
@@ -14,6 +14,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
   pSub: Subscription  //prouductSub
   dSub: Subscription  // Очистка подписки для предотвращения утечки памяти
   searchStr = ''
+  product:Product
+  //imageUrl = 'https://picsum.photos/'
+
+  @Output() onAdd: EventEmitter<Product> = new EventEmitter<Product>()
 
   constructor(private ordersService: ProductsService) { }
 
@@ -22,6 +26,23 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.products = products
     })
   }
+
+  
+  addProductInOrder(id: number) {
+    this.onAdd.emit(this.findProductById(id))
+    sessionStorage.setItem("product-info", JSON.stringify(this.findProductById(id)))
+    console.log(sessionStorage.getItem("product-info"))
+  }
+
+  findProductById(id: number) { 
+   for(let i=0; i < this.products.length; i++) {
+     if (id == this.products[i].id ) {
+       return this.products[i]
+     }
+    }
+    return undefined
+  }
+
 
   remove(id: any) {
    this.dSub = this.ordersService.remove(id).subscribe( () => {

@@ -36,8 +36,6 @@ export class OrdersService {
         }))
     }
     
-
-    //Need to change smth in thi method
     getById(id: string ) {
         return this.http.get<Order>(`${environment.dbUrl}/order/${id}`)
         .pipe(map( (order: Order) => {

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { OrderPageComponent } from './order-page/order-page.component';
+import { OrderPageComponent } from './shared/components/order-page/order-page.component';
 import { ProductComponent } from './shared/components/product/product.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';

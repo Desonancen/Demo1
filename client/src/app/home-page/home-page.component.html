@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr *ngFor ="let product of products | searchProducts:searchStr; let idx = index">   <!---->
-                    <td>{{ +product.id+1 }}</td>
+                    <td>1</td>
                     <td>{{product.provider}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
@@ -24,6 +24,7 @@
                     <td>
                         <button class="btn btn-link open"
                         [routerLink]="['/order', product.id]"
+                        (click) = "addProductInOrder(product.id)"
                         >
                          Buy now  
                         </button>
