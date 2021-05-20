@@ -28,9 +28,7 @@ export class OrdersService {
             return  Object
             .keys(response)
             .map(key => ({
-                ...response[key],
-                id: key,
-                date: new Date(response[key].date)
+                ...response[key]
             }))
             
         }))
@@ -40,16 +38,21 @@ export class OrdersService {
         return this.http.get<Order>(`${environment.dbUrl}/order/${id}`)
         .pipe(map( (order: Order) => {
             return{
-              ...order, id,
-              created_date: new Date()
+              ...order
           }
       }))
     }
 
     //Check how it work on server side and db
     remove(id: string): Observable<void> {
+        console.log(id);
+        
         return this.http.delete<void>(`${environment.dbUrl}/order/${id}`)
     }
 
+
+    update(id:any, order:any) {
+        return this.http.put(`${environment.dbUrl}/order/${id}`, order )
+    }
 
 }

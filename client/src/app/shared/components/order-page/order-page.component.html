@@ -1,7 +1,7 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Order Info</h1>
     <div class="product-name">Product: {{this.product_info.name}}</div>
-    <div class="product-price">Price: {{total_price}}</div>
+    <div class="product-price">Price: {{total_price}} USD</div>
     <div class="product-quantity">Quantity: {{this.quantity}}</div>
         
             <div class="form-control"
@@ -50,6 +50,6 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid">Make order</button>
+            <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid"  >Make order</button>
         
 </form>

@@ -9,7 +9,7 @@
     <small *ngIf="product.avaliable; else unavaliable">Free Shipping</small>
     <ng-template #unavaliable> <small>Product unavaliable</small></ng-template>
     <div class="card-buttons">
-    <input class="product-quantity"  [(ngModel)]="quantity" type="number" min="1">
+    <input class="product-quantity"  [(ngModel)]="quantity" type="number" min="1" [disabled]="!product.avaliable">
         <button class="btn btn-link open"
         [routerLink]="['/order', product.id, quantity]"
         [disabled]="!product.avaliable"

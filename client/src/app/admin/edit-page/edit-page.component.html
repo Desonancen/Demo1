@@ -1,20 +1,40 @@
-<div *ngIf="form; else loading">
-<form fromGroup="form" (ngSubmit)="submit()">
-        <div class="form-control"
-        [ngClass]="{invalid: form.get('address')!.touched && form.get('address')!.invalid}"
-        >
-            <label for="address">Delivery address:</label>
-            <input id="address" type="text" formControlName="address">
-            <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" 
-            class="validation">
-                <small *ngIf="form.get('address')?.errors?.required">Enter address</small>
-            </div>
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+        <h1>Change Order</h1>
+        <div>
+            <p>Current Adress: {{orders_info.delivery_address}}</p>
+            <p>Current Comment: {{orders_info.comment}}</p>
+            <p>{{orders_info.paid}}</p>
         </div>
+                <div class="form-control"
+                [ngClass]="{invalid: form.get('address')!.touched && form.get('address')!.invalid}"
+                >
+                    <label for="address">Address:</label>
+                    <input id="address" type="text" formControlName="address">
+                    <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" 
+                    class="validation">
+                        <small *ngIf="form.get('address')?.errors?.required">Enter new delivery address</small>
+                    </div>
+                </div>
+    
+                <div class="form-control"
+                [ngClass]="{invalid: form.get('comment')!.touched && form.get('comment')!.invalid}"
+                >
+                    <label for="comment">Comment:</label>
+                    <textarea id="comment" type="text" formControlName="comment"></textarea>
+                    <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" 
+                    class="validation">
+                        <small>Length must be less then {{form.get('comment')?.errors?.maxlength.requiredLength}} symbols
+                                Now number of symbols is {{form.get('comment')?.errors?.maxlength.actualLength}}
+                        </small>
+                    </div>
+                </div>
 
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Update</button>
-</form>
-</div>
-
-<ng-template #loading>
-    <p class="text-center">Loading...</p>
-</ng-template>
+                <div class="form-control form-checkbox">
+                    <label for="paid">Paid:</label>
+                    <input id="paid" type="checkbox" value="true" formControlName="paid">
+                </div>
+    
+                <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid">Update order</button>
+            
+    </form>
+    

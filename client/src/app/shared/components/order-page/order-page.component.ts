@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Order, Product } from '../../interfaces';
 import { OrdersService } from '../../services/orders.service';
 import { ProductsService } from '../../services/products.service';
@@ -26,19 +26,20 @@ export class OrderPageComponent implements OnInit {
   quantity: number
   total_price: number
 
-  constructor(private ordersSerice: OrdersService,
+  constructor(
+    private ordersSerice: OrdersService,
+    private router: Router,
     private route: ActivatedRoute, 
     private productsService: ProductsService) { }
 
   ngOnInit() {
-    //this.product_info = (JSON.parse(sessionStorage.getItem("product-info") || ""));
 
     this.route.params.subscribe( (params: Params) => {
       this.quantity = params.quantity
       this.productsService.getById(params.id).subscribe( (response) => {
         this.product_info = response
+        this.total_price = this.quantity*this.product_info.price
       })
-      this.total_price = this.quantity*this.product_info.price
     }) 
 
     this.form = new FormGroup( {
@@ -48,11 +49,6 @@ export class OrderPageComponent implements OnInit {
       comment: new FormControl(null, Validators.maxLength(30)),
       paid: new FormControl(false)
     })
-  }
-
-  getProductInfo() {
-    const productInfo = sessionStorage.getItem("product-info")
-    console.log(productInfo);
   }
 
   submit() {
@@ -74,6 +70,7 @@ export class OrderPageComponent implements OnInit {
 
     this.ordersSerice.create(order).subscribe( () => {
       this.form.reset()
+      this.router.navigate(['/'])
     })
     
   }

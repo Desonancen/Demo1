@@ -42,10 +42,10 @@ class orderController {
   }
 
   async deleteOrder(req, res) {    
-    const id = req.query.id;
+    const id = req.params.id;
     try {
-    const order = await OrdersQueries.deleteOrderDb(id);
-    res.json(order.rows[0]);
+   const order = await OrdersQueries.deleteOrderDb(id);
+   res.json(order.rows[0]);
     } catch (err) {
       console.log(err);  //Change console logs after added cath on client side
       }
