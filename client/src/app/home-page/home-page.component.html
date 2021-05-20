@@ -2,37 +2,9 @@
             <div class="form-control">
                 <input type="text" placeholder="Find product..." [(ngModel)]="searchStr" > <!---->
             </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Index</th>
-                    <th>Provider</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Details</th>
-                    <th>Avaliable</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor ="let product of products | searchProducts:searchStr; let idx = index">   <!---->
-                    <td>1</td>
-                    <td>{{product.provider}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.price}}</td>
-                    <td>{{product.details}}</td>
-                    <td>{{product.avaliable}}</td>
-                    <td>
-                        <button class="btn btn-link open"
-                        [routerLink]="['/order', product.id]"
-                        (click) = "addProductInOrder(product.id)"
-                        >
-                         Buy now  
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
+            <div class="product-cards">
+                <app-product class="" *ngFor ="let product of products | searchProducts:searchStr; let idx = index" [product]="product" (onAdd)="onAdd1()"></app-product>
+            </div>
         <ng-template #loading>
             <p class="text-center">Loading...</p>
         </ng-template>

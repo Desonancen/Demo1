@@ -27,24 +27,24 @@ export class ProductsService {
             return  Object
             .keys(response)
             .map(key => ({
-                ...response[key],
-                id: key
+                ...response[key]
             }))
             
         }))
     }
     
 
-    //Need to change smth in thi method
-    //getById(id: string ) {
-    //    return this.http.get<Product>(`${environment.dbUrl}/product/${id}`)
-    //    .pipe(map( (product: Product) => {
-    //        return{
-    //          ...product, id,
-    //          created_date: new Date()
-    //      }
-    //  }))
-   //}
+
+    getById(id: string ) {
+        return this.http.get<Product>(`${environment.dbUrl}/product/${id}`)
+        .pipe(map( (product: Product) => {
+           console.log("Product", {...product});
+            
+            return{
+              ...product
+          }
+      }))
+   }
 
     //Check how it work on server side and db
     remove(id: string): Observable<void> {

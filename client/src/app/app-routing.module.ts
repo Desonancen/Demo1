@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
-      {path: 'order/:id', component: OrderPageComponent},
+      {path: 'order/:id/:quantity', component: OrderPageComponent},
       {path: 'product', component: ProductComponent}
     ]
   },
