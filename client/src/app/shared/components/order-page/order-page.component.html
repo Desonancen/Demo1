@@ -1,10 +1,13 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Order Info</h1>
+    <div class="product-name">Product: {{this.product_info.name}}</div>
+    <div class="product-price">Price: {{total_price}}</div>
+    <div class="product-quantity">Quantity: {{this.quantity}}</div>
         
             <div class="form-control"
             [ngClass]="{invalid: form.get('name')!.touched && form.get('name')!.invalid}"
             >
-                <label for="name">Name:</label>
+                <label for="name">Name*:</label>
                 <input id="name" type="text" formControlName="name">
                 <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" 
                 class="validation">
@@ -15,7 +18,7 @@
             <div class="form-control"
             [ngClass]="{invalid: form.get('phone')!.touched && form.get('phone')!.invalid}"
             >
-                <label for="phone">Phone:</label>
+                <label for="phone">Phone*:</label>
                 <input id="phone" type="tel" formControlName="phone">
                 <div *ngIf="form.get('phone')!.touched && form.get('phone')!.invalid" 
                 class="validation">
@@ -26,7 +29,7 @@
             <div class="form-control"
             [ngClass]="{invalid: form.get('address')!.touched && form.get('address')!.invalid}"
             >
-                <label for="address">Address:</label>
+                <label for="address">Address*:</label>
                 <input id="address" type="text" formControlName="address">
                 <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" 
                 class="validation">
@@ -41,7 +44,9 @@
                 <textarea id="comment" type="text" formControlName="comment"></textarea>
                 <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" 
                 class="validation">
-                    <small *ngIf="form.get('comment')?.errors?.maxLength">Length must be not more then 30 symbols</small>
+                    <small>Length must be less then {{form.get('comment')?.errors?.maxlength.requiredLength}} symbols
+                            Now number of symbols is {{form.get('comment')?.errors?.maxlength.actualLength}}
+                    </small>
                 </div>
             </div>
 

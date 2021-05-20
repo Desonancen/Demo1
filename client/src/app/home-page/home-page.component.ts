@@ -17,35 +17,22 @@ export class HomePageComponent implements OnInit, OnDestroy {
   product:Product
   //imageUrl = 'https://picsum.photos/'
 
-  @Output() onAdd: EventEmitter<Product> = new EventEmitter<Product>()
+  //@Output() onAdd: EventEmitter<Product> = new EventEmitter<Product>()
 
-  constructor(private ordersService: ProductsService) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.pSub = this.ordersService.getAll().subscribe( products => {
+    this.pSub = this.productsService.getAll().subscribe( products => {
       this.products = products
     })
   }
 
-  
-  addProductInOrder(id: number) {
-    this.onAdd.emit(this.findProductById(id))
-    sessionStorage.setItem("product-info", JSON.stringify(this.findProductById(id)))
-    console.log(sessionStorage.getItem("product-info"))
-  }
+  onAdd1() {
 
-  findProductById(id: number) { 
-   for(let i=0; i < this.products.length; i++) {
-     if (id == this.products[i].id ) {
-       return this.products[i]
-     }
-    }
-    return undefined
   }
-
 
   remove(id: any) {
-   this.dSub = this.ordersService.remove(id).subscribe( () => {
+   this.dSub = this.productsService.remove(id).subscribe( () => {
      this.products = this.products.filter(products => products.id !==id)
    })
   }

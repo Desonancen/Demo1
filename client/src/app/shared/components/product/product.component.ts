@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit} from '@angular/core';
 import { Product } from '../../interfaces';
 import { ProductsService } from '../../services/products.service';
 
@@ -10,39 +9,13 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductComponent implements OnInit {
 
-  form: FormGroup
+  @Input() product: Product
 
-  constructor(private productsSerice: ProductsService) { }
 
-  ngOnInit() {
-    this.form = new FormGroup( {
-      provider: new FormControl(null, Validators.required),
-      name: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required),
-      avaliable: new FormControl(true),
-      details: new FormControl(null, Validators.maxLength(30)),
-    })
-  }
+  quantity: number = 1
 
-  submit() {
-    if (this.form.invalid) {
-      return
-    }
+  constructor() { }
 
-    const product: Product = {
-
-      id: 5,
-      provider: this.form.value.provider,
-      name: this.form.value.name,
-      avaliable: this.form.value.avaliable,
-      price: this.form.value.price,
-      details: this.form.value.details
-    }
-
-    this.productsSerice.create(product).subscribe( () => {
-      this.form.reset()
-    })
-    
-  }
+  ngOnInit() {}
 
 }
