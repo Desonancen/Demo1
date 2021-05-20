@@ -5,22 +5,23 @@
 <table>
     <thead>
         <tr>
-            <th>Index</th>
+            <th>Order ID</th>
             <th>Name</th>
             <th>Phone</th>
             <th>Address</th>
             <th>Date</th>
             <th>Details</th>
             <th>Paid</th>
+            <th>Manage buttons</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor ="let order of orders | searchOrders:searchStr; let idx = index">   <!---->
-            <td>1</td>
+            <td>{{order.id}}</td>
             <td>{{order.name}}</td>
             <td>{{order.phone}}</td>
             <td>{{order.delivery_address}}</td>
-            <td>{{order.created_date | date:'medium'}}</td>
+            <td>{{order.created_date | date:'mediumDate'}}</td>
             <td>{{order.comment}}</td>
             <td>{{order.paid}}</td>
             <td>

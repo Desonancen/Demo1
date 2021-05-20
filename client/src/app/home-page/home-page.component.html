@@ -3,7 +3,7 @@
                 <input type="text" placeholder="Find product..." [(ngModel)]="searchStr" > <!---->
             </div>
             <div class="product-cards">
-                <app-product class="" *ngFor ="let product of products | searchProducts:searchStr; let idx = index" [product]="product" (onAdd)="onAdd1()"></app-product>
+                <app-product class="" *ngFor ="let product of products | searchProducts:searchStr" [product]="product" (onAdd)="onAdd1()"></app-product>
             </div>
         <ng-template #loading>
             <p class="text-center">Loading...</p>

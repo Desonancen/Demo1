@@ -225,6 +225,10 @@ button {
   font: inherit;
 }
 
+input[type='checkbox'] {
+  width:10%;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -241,6 +245,10 @@ table th {
   color: white;
   height: 1rem;
   padding: 0.5rem;
+}
+
+table tr:hover {
+  background-color: #e7e9d7b6;
 }
 
 .navbar {

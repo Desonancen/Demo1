@@ -17,8 +17,8 @@ class OrdersQueries {
     };
 
     editOrderDb = async (rest) => { return await db.query(
-        "UPDATE orders set delivery_address = $1, comment = $2 where id = $3 RETURNING *",
-        [rest.delivery_address, rest.comment, rest.id]
+        "UPDATE orders set delivery_address = $1, comment = $2, paid=$3 where id = $4 RETURNING *",
+        [rest.delivery_address, rest.comment, rest.paid, rest.id]
       )
     };
 
