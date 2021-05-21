@@ -11,7 +11,7 @@ export class OrdersService {
     constructor(private http: HttpClient) {}
 
     create(order: Order): Observable<Order> {
-        return this.http.post<Order>(`${environment.dbUrl}/order`, order)
+        return this.http.post<Order>(`${environment.serverUrl}/order`, order)
         .pipe(map( (response:DbCreateResponse) => {
               const newOrder: Order = {
                 ...order,
@@ -23,7 +23,7 @@ export class OrdersService {
     }
 
     getAll(): Observable<Order[]> {
-        return this.http.get(`${environment.dbUrl}/order`)
+        return this.http.get(`${environment.serverUrl}/order`)
         .pipe(map( (response: {[key: string]: any}) => {
             return  Object
             .keys(response)
@@ -35,7 +35,7 @@ export class OrdersService {
     }
     
     getById(id: string ) {
-        return this.http.get<Order>(`${environment.dbUrl}/order/${id}`)
+        return this.http.get<Order>(`${environment.serverUrl}/order/${id}`)
         .pipe(map( (order: Order) => {
             return{
               ...order
@@ -47,12 +47,12 @@ export class OrdersService {
     remove(id: string): Observable<void> {
         console.log(id);
         
-        return this.http.delete<void>(`${environment.dbUrl}/order/${id}`)
+        return this.http.delete<void>(`${environment.serverUrl}/order/${id}`)
     }
 
 
-    update(id:any, order:any) {
-        return this.http.put(`${environment.dbUrl}/order/${id}`, order )
+    update(order:any) {
+        return this.http.put(`${environment.serverUrl}/order/${order.id}`, order )
     }
 
 }

@@ -1,6 +1,7 @@
-<div> <!-- *ngIf="ordes.length; else loading"-->
+<!-- *ngIf="orders.length; else loading" -->
+<div>
     <div class="form-control">
-        <input type="text" placeholder="Find order..." [(ngModel)]="searchStr" > <!---->
+        <input type="text" placeholder="Find order by name..." [(ngModel)]="searchStr" >
     </div>
 <table>
     <thead>
@@ -12,25 +13,26 @@
             <th>Date</th>
             <th>Details</th>
             <th>Paid</th>
-            <th>Manage buttons</th>
+            <th>Manage order</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor ="let order of orders | searchOrders:searchStr; let idx = index">   <!---->
+        <tr *ngFor ="let order of orders | searchOrders:searchStr; let idx = index">
             <td>{{order.id}}</td>
             <td>{{order.name}}</td>
             <td>{{order.phone}}</td>
             <td>{{order.delivery_address}}</td>
             <td>{{order.created_date | date:'mediumDate'}}</td>
             <td>{{order.comment}}</td>
-            <td>{{order.paid}}</td>
+            <td class="alert-success" *ngIf="order.paid; else unpaid">Paid</td>
+            <ng-template #unpaid><td class="alert-warning">Order not paid</td></ng-template>
             <td>
-                <button class="btn btn-link open"
+                <button class="btn btn-dark open"
                 [routerLink]="['/admin', 'order', order.id, 'edit']"
                 >
                  Edit order   
                 </button>
-                <a class="delete" (click)="remove(order.id)">Delete</a>
+                <a class="delete btn btn-dark " (click)="remove(order.id)">Delete</a>
             </td>
         </tr>
     </tbody>

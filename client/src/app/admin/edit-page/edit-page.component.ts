@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Order } from 'src/app/shared/interfaces';
 import { OrdersService } from 'src/app/shared/services/orders.service';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -10,22 +11,22 @@ import { OrdersService } from 'src/app/shared/services/orders.service';
   styleUrls: ['./edit-page.component.scss']
 })
 export class EditPageComponent implements OnInit {
-  order: Order
+
   form: FormGroup
 
   orders_info:Order
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private ordersService: OrdersService) { }
+    private ordersService: OrdersService,
+    private alert: AlertService
+    ) { }
 
   ngOnInit(): void {
 
     this.route.params.subscribe( (params: Params) => {
       this.ordersService.getById(params.id).subscribe( (response) => {
         this.orders_info = response
-        console.log(response.id);
-        
       })
     })
 
@@ -49,8 +50,9 @@ export class EditPageComponent implements OnInit {
         id: this.orders_info.id
       }
 
-      this.ordersService.update(this.orders_info.id, newOrder).subscribe( () => {
+      this.ordersService.update(newOrder).subscribe( () => {
         this.form.reset()
+        this.alert.success('You update information about order')
         this.router.navigate(['/admin', 'orders'])
       })
 

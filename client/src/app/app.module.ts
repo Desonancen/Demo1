@@ -12,6 +12,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { SearchPipe } from './shared/search.pipe';
 
+
+
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
@@ -25,12 +27,13 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HomePageComponent,
     OrderPageComponent,
     ProductComponent,
-    SearchPipe
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

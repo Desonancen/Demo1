@@ -7,14 +7,12 @@ class Product {
   protected _details: string;
 
   constructor(
-    id: number,
     provider: string,
     name: string,
     avaliable: boolean,
     price: number,
     details: string
   ) {
-    this._id = id;
     this._provider = provider;
     this._name = name;
     this._avaliable = avaliable;

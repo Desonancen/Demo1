@@ -1,5 +1,4 @@
 export interface Environment {
-    apiKey: string,
     production: boolean,
-    dbUrl: string
+    serverUrl: string
 }

@@ -11,7 +11,7 @@ export class ProductsService {
     constructor(private http: HttpClient) {}
 
     create(product: Product): Observable<Product> {
-        return this.http.post<Product>(`${environment.dbUrl}/product`, product)
+        return this.http.post<Product>(`${environment.serverUrl}/product`, product)
         .pipe(map( (response:DbCreateResponse) => {
               const newOrder: Product = {
                 ...product,
@@ -22,7 +22,7 @@ export class ProductsService {
     }
 
     getAll(): Observable<Product[]> {
-        return this.http.get(`${environment.dbUrl}/product`)
+        return this.http.get(`${environment.serverUrl}/product`)
         .pipe(map( (response: {[key: string]: any}) => {
             return  Object
             .keys(response)
@@ -36,10 +36,9 @@ export class ProductsService {
 
 
     getById(id: string ) {
-        return this.http.get<Product>(`${environment.dbUrl}/product/${id}`)
+        return this.http.get<Product>(`${environment.serverUrl}/product/${id}`)
         .pipe(map( (product: Product) => {
-           console.log("Product", {...product});
-            
+  
             return{
               ...product
           }
@@ -48,7 +47,7 @@ export class ProductsService {
 
     //Check how it work on server side and db
     remove(id: string): Observable<void> {
-        return this.http.delete<void>(`${environment.dbUrl}/product/${id}`)
+        return this.http.delete<void>(`${environment.serverUrl}/product/${id}`)
     }
 
 

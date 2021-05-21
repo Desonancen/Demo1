@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Order } from 'src/app/shared/interfaces';
 import { OrdersService } from 'src/app/shared/services/orders.service';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-orders-page',
@@ -11,31 +12,35 @@ import { OrdersService } from 'src/app/shared/services/orders.service';
 export class OrdersPageComponent implements OnInit, OnDestroy {
 
   orders: Order[]
-  pSub: Subscription
-  dSub: Subscription  // Очистка подписки для предотвращения утечки памяти
+  orderSub: Subscription
+  deleteSub: Subscription
+  productSub: Subscription  // Очистка подписки для предотвращения утечки памяти
   searchStr = ''
 
-  constructor(private ordersService: OrdersService) { }
+  constructor(private ordersService: OrdersService,
+    private alert: AlertService
+    ) { }
 
   ngOnInit() {
-    this.pSub = this.ordersService.getAll().subscribe( orders => {
+    this.orderSub = this.ordersService.getAll().subscribe( orders => {
       this.orders = orders
     })
   }
 
   remove(id: any) {
-   this.dSub = this.ordersService.remove(id).subscribe( () => {
+   this.deleteSub = this.ordersService.remove(id).subscribe( () => {
      this.orders = this.orders.filter(order => order.id !==id)
+     this.alert.danger('You delete order from database')
    })
   }
 
   ngOnDestroy() {
-    if (this.pSub) {
-      this.pSub.unsubscribe()
+    if (this.orderSub) {
+      this.orderSub.unsubscribe()
     }
 
-    if (this.dSub) {
-      this.dSub.unsubscribe()
+    if (this.deleteSub) {
+      this.deleteSub.unsubscribe()
     }
   }
 

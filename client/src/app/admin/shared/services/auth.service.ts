@@ -25,7 +25,7 @@ export class AuthService {
 
     login(admin: Admin): Observable<any> {
         admin.returnSecureToken = true
-        return this.http.post(`${environment.dbUrl}/login`, admin)
+        return this.http.post(`${environment.serverUrl}/login`, admin)
         .pipe(
             tap<any>(this.setToken),
             catchError(this.handleError.bind(this))

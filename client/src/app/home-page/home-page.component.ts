@@ -15,9 +15,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
   dSub: Subscription  // Очистка подписки для предотвращения утечки памяти
   searchStr = ''
   product:Product
-  //imageUrl = 'https://picsum.photos/'
-
-  //@Output() onAdd: EventEmitter<Product> = new EventEmitter<Product>()
 
   constructor(private productsService: ProductsService) { }
 
@@ -25,10 +22,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.pSub = this.productsService.getAll().subscribe( products => {
       this.products = products
     })
-  }
-
-  onAdd1() {
-
   }
 
   remove(id: any) {

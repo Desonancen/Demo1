@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+//import { AlertService } from 'src/app/admin/shared/services/alert.service';
 import { Order, Product } from '../../interfaces';
 import { OrdersService } from '../../services/orders.service';
 import { ProductsService } from '../../services/products.service';
@@ -30,7 +31,9 @@ export class OrderPageComponent implements OnInit {
     private ordersSerice: OrdersService,
     private router: Router,
     private route: ActivatedRoute, 
-    private productsService: ProductsService) { }
+    private productsService: ProductsService,
+    //private alert: AlertService
+    ) { }
 
   ngOnInit() {
 
@@ -70,6 +73,7 @@ export class OrderPageComponent implements OnInit {
 
     this.ordersSerice.create(order).subscribe( () => {
       this.form.reset()
+     // this.alert.success('You just make your order')
       this.router.navigate(['/'])
     })
     
