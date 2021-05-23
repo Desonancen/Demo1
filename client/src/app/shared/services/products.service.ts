@@ -38,7 +38,6 @@ export class ProductsService {
     getById(id: string ) {
         return this.http.get<Product>(`${environment.serverUrl}/product/${id}`)
         .pipe(map( (product: Product) => {
-  
             return{
               ...product
           }

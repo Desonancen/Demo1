@@ -47,7 +47,7 @@ export class OrderPageComponent implements OnInit {
 
     this.form = new FormGroup( {
       name: new FormControl(null, Validators.required),
-      phone: new FormControl(null, Validators.required),
+      phone: new FormControl(null, [Validators.required, Validators.minLength(10)]),
       address: new FormControl(null, Validators.required),
       comment: new FormControl(null, Validators.maxLength(30)),
       paid: new FormControl(false)

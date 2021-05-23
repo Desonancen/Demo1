@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Order } from 'src/app/shared/interfaces';
+import { Subscription } from 'rxjs';
+import { Order, Product } from 'src/app/shared/interfaces';
 import { OrdersService } from 'src/app/shared/services/orders.service';
+import { ProductsService } from 'src/app/shared/services/products.service';
 import { AlertService } from '../shared/services/alert.service';
 
 @Component({
@@ -10,23 +12,33 @@ import { AlertService } from '../shared/services/alert.service';
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss']
 })
-export class EditPageComponent implements OnInit {
+export class EditPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup
+  productSub: Subscription
+  ordersSub: Subscription
 
-  orders_info:Order
+  orders_info: Order
+  product_info: Product
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private ordersService: OrdersService,
-    private alert: AlertService
+    private alert: AlertService,
+    public productsService: ProductsService
     ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     this.route.params.subscribe( (params: Params) => {
-      this.ordersService.getById(params.id).subscribe( (response) => {
+    this.ordersSub =  this.ordersService.getById(params.id).subscribe( (response) => {
         this.orders_info = response
+
+        if (this.orders_info.id) {
+          this.productSub = this.productsService.getById(this.orders_info.product_id.toString()).subscribe( (response) => {
+            this.product_info = response
+          })
+        }
       })
     })
 
@@ -42,7 +54,7 @@ export class EditPageComponent implements OnInit {
       if (this.form.invalid) {
         return
       }
-      
+
       const newOrder = {
         delivery_address: this.form.value.address,
         comment: this.form.value.comment,
@@ -56,6 +68,16 @@ export class EditPageComponent implements OnInit {
         this.router.navigate(['/admin', 'orders'])
       })
 
+    }
+
+    ngOnDestroy() {
+          if (this.productSub) {
+          this.productSub.unsubscribe()
+        }
+
+        if (this.ordersSub) {
+          this.ordersSub.unsubscribe()
+        }
     }
 
 }

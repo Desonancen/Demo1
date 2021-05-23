@@ -1,4 +1,12 @@
+.products {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .product-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+
 }

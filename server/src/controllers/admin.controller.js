@@ -13,8 +13,8 @@ class adminController {
     const {email, password} = req.body
 
     const admin = { 
-      email: "nik@mail.ru",
-      password: "123456"
+      email: process.env.ADMIN_MAIL,
+      password: process.env.ADMIN_PASSWORD
     };
 
     const hashPassword = bcrypt.hashSync(admin.password, 2)

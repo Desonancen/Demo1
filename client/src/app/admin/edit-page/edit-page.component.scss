@@ -1,4 +1,28 @@
-.form-checkbox {
-    display: flex;
-    flex-direction: row;
+.card {
+
+    h1 {
+        margin: 0 auto;
+    }
+
+    .form-checkbox {
+        display: flex;
+        
+        input {
+            margin-top: 6px;
+        }
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .order-info, .product-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
 }

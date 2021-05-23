@@ -26,7 +26,7 @@ body {
 a {
   color: var(--primary-color);
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none !important;
 
   &:hover {
     color: #666;
@@ -82,30 +82,11 @@ img {
   }
 }
 
-.btn {
-  display: inline-block;
-  background: var(--light-color);
-  color: #333;
-  padding: 0.2rem 1.3rem;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  transition: opacity 0.2s ease-in;
-  outline: none;
-  border-radius: .5rem;
-
-  &:disabled {
-    cursor: not-allowed;
-    background: var(--light-color);
-    color: #111;
-  }
-}
-
 .btn-link {
   background: none;
   padding: 0;
   margin: 0;
+  text-decoration: none !important;
 }
 
 .btn-block {
@@ -226,7 +207,7 @@ button {
 }
 
 input[type='checkbox'] {
-  width:10%;
+  width:3%;
 }
 
 table {
@@ -255,12 +236,10 @@ table tr:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 2rem;
   z-index: 1;
   width: 100%;
   opacity: 0.9;
   margin-bottom: 1rem;
-  height: 3rem;
 
   &.main {
     justify-content: center;

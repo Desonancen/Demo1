@@ -13,7 +13,7 @@ export  const authMiddleware = (req: any, res: Response, next: NextFunction) => 
       return res.status(403).json({ message: 'Not authorized' })
     }
 
-    const decoded = jwt.verify(token, process.env.SECRET_KEY!)
+    const decoded = jwt.verify(token, process.env.SECRET_KEY)
     req.user = decoded
     next()
   } catch (error) {

@@ -1,5 +1,5 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
-    <h2>Enter admin panel</h2>
+    <h2>Admin panel</h2>
 
     <div class="alert alert-danger" *ngIf="auth.error$ | async as error">
         {{error}}
@@ -17,7 +17,6 @@
         <div *ngIf="form.get('email')!.touched && form.get('email')!.invalid" 
         class="validation">
             <small *ngIf="form.get('email')?.errors?.required">Enter email</small>
-            <small *ngIf="form.get('email')?.errors?.email">Enter correct email</small>
         </div>
     </div>
 
@@ -29,9 +28,6 @@
             <div *ngIf="form.get('password')!.touched && form.get('password')!.invalid"
             class="validation">
                 <small *ngIf="form.get('password')?.errors?.required">Enter password</small>
-                <small *ngIf="form.get('password')?.errors?.minlength">
-                        Lenght must be not less then {{form.get('password')?.errors?.minlength.requiredLength}}.
-                        Now number of symbols is {{form.get('password')?.errors?.minlength.actualLength}}</small>
             </div>
         </div>
 

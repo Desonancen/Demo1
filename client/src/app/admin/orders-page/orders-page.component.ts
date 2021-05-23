@@ -30,7 +30,7 @@ export class OrdersPageComponent implements OnInit, OnDestroy {
   remove(id: any) {
    this.deleteSub = this.ordersService.remove(id).subscribe( () => {
      this.orders = this.orders.filter(order => order.id !==id)
-     this.alert.danger('You delete order from database')
+     this.alert.danger('You delete order')
    })
   }
 

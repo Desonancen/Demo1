@@ -6,32 +6,35 @@
 <table>
     <thead>
         <tr>
-            <th>Order ID</th>
+            <th>№</th>
             <th>Name</th>
             <th>Phone</th>
             <th>Address</th>
             <th>Date</th>
             <th>Details</th>
             <th>Paid</th>
-            <th>Manage order</th>
+            <th>Edit order</th>
+            <th>Delete order</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor ="let order of orders | searchOrders:searchStr; let idx = index">
-            <td>{{order.id}}</td>
+            <td>{{idx+1}}</td>
             <td>{{order.name}}</td>
             <td>{{order.phone}}</td>
             <td>{{order.delivery_address}}</td>
             <td>{{order.created_date | date:'mediumDate'}}</td>
             <td>{{order.comment}}</td>
             <td class="alert-success" *ngIf="order.paid; else unpaid">Paid</td>
-            <ng-template #unpaid><td class="alert-warning">Order not paid</td></ng-template>
+            <ng-template #unpaid><td class="alert-warning">Unpaid</td></ng-template>
             <td>
                 <button class="btn btn-dark open"
                 [routerLink]="['/admin', 'order', order.id, 'edit']"
                 >
                  Edit order   
                 </button>
+            </td>
+            <td>
                 <a class="delete btn btn-dark " (click)="remove(order.id)">Delete</a>
             </td>
         </tr>

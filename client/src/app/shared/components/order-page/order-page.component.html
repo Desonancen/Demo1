@@ -1,8 +1,10 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Order Info</h1>
+    <div class="product-info">
     <div class="product-name">Product: {{this.product_info.name}}</div>
     <div class="product-price">Price: {{total_price}} USD</div>
     <div class="product-quantity">Quantity: {{this.quantity}}</div>
+    </div>
         
             <div class="form-control"
             [ngClass]="{invalid: form.get('name')!.touched && form.get('name')!.invalid}"
@@ -19,10 +21,14 @@
             [ngClass]="{invalid: form.get('phone')!.touched && form.get('phone')!.invalid}"
             >
                 <label for="phone">Phone*:</label>
-                <input id="phone" type="tel" formControlName="phone">
+                <input id="phone" type="tel" formControlName="phone" placeholder="0501234321">
                 <div *ngIf="form.get('phone')!.touched && form.get('phone')!.invalid" 
                 class="validation">
                     <small *ngIf="form.get('phone')?.errors?.required">Enter phone</small>
+                    <small *ngIf="form.get('phone')?.errors?.minLength">
+                            Phone must be bot less then {{form.get('password')?.errors?.minlength.requiredLength}} symbols.
+                            Now number of symbols is {{form.get('phone')?.errors?.minlength.actualLength}}
+                    </small>
                 </div>
             </div>
 

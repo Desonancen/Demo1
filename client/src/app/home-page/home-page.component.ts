@@ -11,32 +11,32 @@ import { ProductsService } from '../shared/services/products.service';
 export class HomePageComponent implements OnInit, OnDestroy {
 
   products: Product[]
-  pSub: Subscription  //prouductSub
-  dSub: Subscription  // Очистка подписки для предотвращения утечки памяти
+  productSub: Subscription  //prouductSub
+  deleteSub: Subscription  // Очистка подписки для предотвращения утечки памяти
   searchStr = ''
   product:Product
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.pSub = this.productsService.getAll().subscribe( products => {
+    this.productSub = this.productsService.getAll().subscribe( products => {
       this.products = products
     })
   }
 
   remove(id: any) {
-   this.dSub = this.productsService.remove(id).subscribe( () => {
+   this.deleteSub = this.productsService.remove(id).subscribe( () => {
      this.products = this.products.filter(products => products.id !==id)
    })
   }
 
   ngOnDestroy() {
-    if (this.pSub) {
-      this.pSub.unsubscribe()
+    if (this.productSub) {
+      this.productSub.unsubscribe()
     }
 
-    if (this.dSub) {
-      this.dSub.unsubscribe()
+    if (this.deleteSub) {
+      this.deleteSub.unsubscribe()
     }
   }
 

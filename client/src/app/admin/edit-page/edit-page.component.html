@@ -1,10 +1,15 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
         <h1>Change Order</h1>
-        <div>
-            <p>Current Adress: {{orders_info.delivery_address}}</p>
-            <p>Current Comment: {{orders_info.comment}}</p>
-
+        <div class="card-info">
+        <div class="order-info">
+            <p><b>Current Adress:</b> {{orders_info.delivery_address}}</p>
+            <p><b>Current Comment:</b> {{orders_info.comment}}</p>
         </div>
+        <div class="product-info">
+            <p><b>Product name:</b> {{product_info.name}}</p>
+            <p><b>Product price:</b> {{product_info.price}}</p>
+        </div>
+    </div>
                 <div class="form-control"
                 [ngClass]="{invalid: form.get('address')!.touched && form.get('address')!.invalid}"
                 >

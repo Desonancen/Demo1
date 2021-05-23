@@ -2,21 +2,29 @@
     <img src="{{randomImage}}" alt="product image">
     <div class="product-title">
         <h3>{{product.provider}}</h3>
+        <div>
         <h2>{{product.name}}</h2>
+        <small class="product-avaliable" *ngIf="product.avaliable; else unavaliable">Free Shipping</small>
+        <ng-template #unavaliable> <small class="product-unavaliable">Product unavaliable</small></ng-template>
     </div>
-    <div class="product-details"></div>
-    <p>{{product.price}} USD</p>
+    </div>
+    <div class="product-details">
     <p>{{product.details}}</p>
-    <small *ngIf="product.avaliable; else unavaliable">Free Shipping</small>
-    <ng-template #unavaliable> <small>Product unavaliable</small></ng-template>
+</div>
     <div class="card-buttons">
-    <input class="product-quantity"  [(ngModel)]="quantity" type="number" min="1" [disabled]="!product.avaliable">
-        <button class="btn btn-link open"
+        <div class="product-amount">
+    <label for="quantity" class="quantity-label">Product amount:</label>
+    <input id="quantity" class="product-quantity"  [(ngModel)]="quantity" type="number" min="1" [disabled]="!product.avaliable">
+        </div>
+        <div>
+        <button class="btn btn-primary open"
         [routerLink]="['/order', product.id, quantity]"
         [disabled]="!product.avaliable"
         > 
          Buy now  
         </button>
+        <p>{{product.price}} USD</p>
+        </div>
     </div>
 </div>
 
@@ -53,54 +61,3 @@
 
 
 
-<!--<form class="card" [formGroup]="form" (ngSubmit)="submit()">
-        <h1>Product Info</h1>
-            
-                <div class="form-control"
-                [ngClass]="{invalid: form.get('provider')!.touched && form.get('provider')!.invalid}"
-                >
-                    <label for="provider">Provider:</label>
-                    <input id="provider" type="text" formControlName="provider">
-                    <div *ngIf="form.get('provider')!.touched && form.get('provider')!.invalid" 
-                    class="validation">
-                        <small *ngIf="form.get('provider')?.errors?.required">Enter provider</small>
-                    </div>
-                </div>
-    
-                <div class="form-control"
-                [ngClass]="{invalid: form.get('name')!.touched && form.get('name')!.invalid}"
-                >
-                    <label for="name">Name:</label>
-                    <input id="name" type="tel" formControlName="name">
-                    <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" 
-                    class="validation">
-                        <small *ngIf="form.get('name')?.errors?.required">Enter name</small>
-                    </div>
-                </div>
-    
-                <div class="form-control"
-                [ngClass]="{invalid: form.get('price')!.touched && form.get('price')!.invalid}"
-                >
-                    <label for="price">Price:</label>
-                    <input id="price" type="text" formControlName="price">
-                    <div *ngIf="form.get('price')!.touched && form.get('price')!.invalid" 
-                    class="validation">
-                        <small *ngIf="form.get('price')?.errors?.required">Enter price</small>
-                    </div>
-                </div>
-    
-                <div class="form-control"
-                [ngClass]="{invalid: form.get('details')!.touched && form.get('details')!.invalid}"
-                >
-                    <label for="details">Details:</label>
-                    <textarea id="details" type="text" formControlName="details"></textarea>
-                    <div *ngIf="form.get('details')!.touched && form.get('details')!.invalid" 
-                    class="validation">
-                        <small *ngIf="form.get('details')?.errors?.maxLength">Length must be not more then 30 symbols</small>
-                    </div>
-                </div>
-    
-                <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid">Create product</button>
-            
-</form> -->
-    
