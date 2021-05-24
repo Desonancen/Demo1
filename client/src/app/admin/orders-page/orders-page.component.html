@@ -8,12 +8,12 @@
     <thead class="bg-dark">
         <tr>
             <th>№</th>
-            <th>Name</th>
+            <th [appSort]="orders" data-order="desc" data-name="name">Name</th>
             <th>Phone</th>
-            <th>Address</th>
-            <th>Date</th>
+            <th [appSort]="orders" data-order="desc" data-name="delivery_address">Address</th>
+            <th [appSort]="orders" data-order="desc" data-name="created_date" data-type="date">Date</th>
             <th>Details</th>
-            <th>Paid</th>
+            <th [appSort]="orders" data-order="desc" data-name="paid">Paid</th>
             <th>Edit order</th>
             <th>Delete order</th>
         </tr>
