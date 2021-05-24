@@ -3,8 +3,9 @@
     <div class="form-control">
         <input type="text" placeholder="Find order by name..." [(ngModel)]="searchStr" >
     </div>
-<table>
-    <thead>
+    <div class="table-responsive">
+<table class="table ">
+    <thead class="bg-dark">
         <tr>
             <th>№</th>
             <th>Name</th>
@@ -40,6 +41,7 @@
         </tr>
     </tbody>
 </table>
+</div>
 </div>
 
 <ng-template #loading>

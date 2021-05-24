@@ -5,3 +5,14 @@
 .navbar>ul {
     margin-bottom: 0;
 }
+
+footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    div {
+        background-color: #212529;
+    }
+}

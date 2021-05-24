@@ -135,13 +135,6 @@ img {
   color: #333;
 }
 
-.btn-dark,
-.bg-dark,
-.badge-dark,
-.alert-dark {
-  background: var(--dark-color);
-  color: #fff;
-}
 
 .btn-danger,
 .bg-danger,
@@ -155,7 +148,7 @@ img {
 .bg-success,
 .badge-success,
 .alert-success {
-  background: var(--success-color);
+  background: #d1e7dd !important;
   color: #fff;
 }
 
@@ -166,6 +159,10 @@ img {
   background: #fff;
   color: #333;
   border: #ccc solid 1px;
+}
+
+.alert-warning {
+  background-color: #fff3cd !important;
 }
 
 .btn:hover {
@@ -214,6 +211,7 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+
 
 table th,
 table td {
