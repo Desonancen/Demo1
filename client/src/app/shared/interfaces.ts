@@ -32,5 +32,6 @@ export interface Product {
     name: string,
     avaliable: boolean,
     price: number,
-    details: string
+    details: string,
+    image_url: string
 }

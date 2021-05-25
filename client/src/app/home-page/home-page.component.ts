@@ -23,6 +23,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.productSub = this.productsService.getAll().subscribe( products => {
       this.products = products
+      console.log(this.products[0].image_url)
     })
   }
 

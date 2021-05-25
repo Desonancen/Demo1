@@ -9,7 +9,6 @@ import { Product } from '../../interfaces';
 export class ProductComponent implements OnInit {
 
   @Input() product: Product
-  randomImgUrl: string
 
   quantity: number = 1
 
@@ -17,10 +16,5 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {}
 
-  getRandomImgUrl() {
-    return this.randomImgUrl = 'https://picsum.photos/200/200?cache=' + new Date().getTime()
-  }
-
-  randomImage = this.getRandomImgUrl()
   
 }

@@ -3,7 +3,7 @@ const db = require ("./dbConnector");
 class ProductsQueries {
 
     createProductDb = async (rest) => {  return await db.query(
-        "INSERT INTO product (provider, name, price, details, avaliable) values ($1, $2, $3, $4, $5) RETURNING *",
+        "INSERT INTO product (provider, name, price, details, avaliable, image_url) values ($1, $2, $3, $4, $5, $6) RETURNING *",
         [rest.provider, rest.name, rest.price, rest.details, rest.avaliable]
       ) 
     };

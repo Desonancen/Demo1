@@ -1,6 +1,6 @@
 <section class="products">
             <div class="form-control">
-                <input type="text" placeholder="Find product by name..." [(ngModel)]="searchStr" > <!---->
+                <input type="text" placeholder="Find product by name..." [(ngModel)]="searchStr" >
             </div>
             <div class="product-cards">
                 <app-product class="" *ngFor ="let product of products | searchProducts:searchStr" [product]="product" ></app-product>
