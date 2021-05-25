@@ -11,12 +11,14 @@ import { ProductsService } from '../shared/services/products.service';
 export class HomePageComponent implements OnInit, OnDestroy {
 
   products: Product[]
-  productSub: Subscription  //prouductSub
-  deleteSub: Subscription  // Очистка подписки для предотвращения утечки памяти
+  productSub: Subscription 
+  deleteSub: Subscription  
   searchStr = ''
   product:Product
 
-  constructor(private productsService: ProductsService) { }
+  constructor(
+    private productsService: ProductsService
+    ) { }
 
   ngOnInit() {
     this.productSub = this.productsService.getAll().subscribe( products => {
@@ -25,9 +27,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   remove(id: any) {
-   this.deleteSub = this.productsService.remove(id).subscribe( () => {
-     this.products = this.products.filter(products => products.id !==id)
-   })
+    this.deleteSub = this.productsService.remove(id).subscribe( () => {
+      this.products = this.products.filter(products => products.id !==id)
+    })
   }
 
   ngOnDestroy() {

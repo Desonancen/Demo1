@@ -3,9 +3,11 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-    imports:[HttpClientModule,
+    imports:[
+        HttpClientModule,
         FormsModule,
-        ReactiveFormsModule,],
+        ReactiveFormsModule,
+    ],
     exports:[HttpClientModule, FormsModule, ReactiveFormsModule],
 })
 

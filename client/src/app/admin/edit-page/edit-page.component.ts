@@ -42,42 +42,40 @@ export class EditPageComponent implements OnInit, OnDestroy {
       })
     })
 
-      this.form = new FormGroup( {
-      address: new FormControl(null, Validators.required),
-      comment: new FormControl(null, Validators.maxLength(30)),
-      paid: new FormControl(null)
-      })
+    this.form = new FormGroup( {
+    address: new FormControl(null, Validators.required),
+    comment: new FormControl(null, Validators.maxLength(30)),
+    paid: new FormControl(null)
+    })
 
   } 
 
-    submit() {
-      if (this.form.invalid) {
-        return
-      }
-
-      const newOrder = {
-        delivery_address: this.form.value.address,
-        comment: this.form.value.comment,
-        paid: this.form.value.paid,
-        id: this.orders_info.id
-      }
-
-      this.ordersService.update(newOrder).subscribe( () => {
-        this.form.reset()
-        this.alert.success('You update information about order')
-        this.router.navigate(['/admin', 'orders'])
-      })
-
+  submit() {
+    if (this.form.invalid) {
+      return
     }
+    const newOrder = {
+      delivery_address: this.form.value.address,
+      comment: this.form.value.comment,
+      paid: this.form.value.paid,
+      id: this.orders_info.id
+    }
+    this.ordersService.update(newOrder).subscribe( () => {
+      this.form.reset()
+      this.alert.success('You update information about order')
+      this.router.navigate(['/admin', 'orders'])
+    })
 
-    ngOnDestroy() {
-          if (this.productSub) {
-          this.productSub.unsubscribe()
-        }
+  }
+
+  ngOnDestroy() {
+        if (this.productSub) {
+        this.productSub.unsubscribe()
+      }
 
         if (this.ordersSub) {
-          this.ordersSub.unsubscribe()
-        }
-    }
+        this.ordersSub.unsubscribe()
+      }
+  }
 
 }

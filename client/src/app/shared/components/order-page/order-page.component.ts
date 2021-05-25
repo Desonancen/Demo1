@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-//import { AlertService } from 'src/app/admin/shared/services/alert.service';
+import { AlertService } from 'src/app/admin/shared/services/alert.service';
 import { Order, Product } from '../../interfaces';
 import { OrdersService } from '../../services/orders.service';
 import { ProductsService } from '../../services/products.service';
@@ -15,14 +15,7 @@ export class OrderPageComponent implements OnInit {
 
   form: FormGroup
   
-  product_info: Product = {
-    id: 1,
-    provider: "",
-    name: "",
-    avaliable: true,
-    price: 1500,
-    details: "DA"
-  }
+  product_info: Product
 
   quantity: number
   total_price: number
@@ -32,7 +25,7 @@ export class OrderPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute, 
     private productsService: ProductsService,
-    //private alert: AlertService
+    private alert: AlertService
     ) { }
 
   ngOnInit() {
@@ -46,8 +39,8 @@ export class OrderPageComponent implements OnInit {
     }) 
 
     this.form = new FormGroup( {
-      name: new FormControl(null, Validators.required),
-      phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+      phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("0[0-9]{9}")]),
       address: new FormControl(null, Validators.required),
       comment: new FormControl(null, Validators.maxLength(30)),
       paid: new FormControl(false)
@@ -73,8 +66,9 @@ export class OrderPageComponent implements OnInit {
 
     this.ordersSerice.create(order).subscribe( () => {
       this.form.reset()
-     // this.alert.success('You just make your order')
+      this.alert.success('You just make your order')
       this.router.navigate(['/'])
+
     })
     
   }

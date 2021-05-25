@@ -14,8 +14,12 @@ export class OrdersPageComponent implements OnInit, OnDestroy {
   orders: Order[]
   orderSub: Subscription
   deleteSub: Subscription
-  productSub: Subscription  // Очистка подписки для предотвращения утечки памяти
+  productSub: Subscription 
   searchStr = ''
+
+  popoverTitle = 'Delete order';
+  popoverMessage = 'Are you sure you want to delete the order?';
+  cancelClicked: boolean
 
   constructor(private ordersService: OrdersService,
     private alert: AlertService
@@ -27,12 +31,14 @@ export class OrdersPageComponent implements OnInit, OnDestroy {
     })
   }
 
-  remove(id: any) {
-   this.deleteSub = this.ordersService.remove(id).subscribe( () => {
-     this.orders = this.orders.filter(order => order.id !==id)
-     this.alert.danger('You delete order')
-   })
-  }
+  remove(id: any, confirmClicked: boolean) {
+    if(confirmClicked) {
+    this.deleteSub = this.ordersService.remove(id).subscribe( () => {
+      this.orders = this.orders.filter(order => order.id !==id)
+      this.alert.danger('You delete order')
+      })
+    }
+   }
 
   ngOnDestroy() {
     if (this.orderSub) {

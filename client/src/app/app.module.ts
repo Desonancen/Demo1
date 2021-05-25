@@ -10,9 +10,8 @@ import { ProductComponent } from './shared/components/product/product.component'
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
-import { SearchPipe } from './shared/search.pipe';
-
-
+import { SearchPipe } from './shared/search-products.pipe';
+import { AlertService } from './admin/shared/services/alert.service';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -33,9 +32,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-
   ],
-  providers: [INTERCEPTOR_PROVIDER],
+  providers: [INTERCEPTOR_PROVIDER, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

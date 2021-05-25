@@ -22,4 +22,5 @@ export class ProductComponent implements OnInit {
   }
 
   randomImage = this.getRandomImgUrl()
+  
 }

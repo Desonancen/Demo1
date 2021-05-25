@@ -8,10 +8,11 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
-import { SearchPipe } from "./shared/search.pipe";
+import { SearchPipe } from "./shared/search-orders.pipe";
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from "./shared/services/alert.service";
 import { SortDirective } from './shared/sort.directive';
+import { ConfirmationPopoverModule } from "angular-confirmation-popover";
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { SortDirective } from './shared/sort.directive';
     ],
     
     imports: [
+        ConfirmationPopoverModule.forRoot({confirmButtonType: 'danger',}),
         CommonModule,
         SharedModule,
         RouterModule.forChild([

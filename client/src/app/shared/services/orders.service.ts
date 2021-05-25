@@ -22,6 +22,7 @@ export class OrdersService {
         }))
     }
 
+
     getAll(): Observable<Order[]> {
         return this.http.get(`${environment.serverUrl}/order`)
         .pipe(map( (response: {[key: string]: any}) => {
@@ -29,24 +30,22 @@ export class OrdersService {
             .keys(response)
             .map(key => ({
                 ...response[key]
-            }))
-            
+            }))  
         }))
     }
+    
     
     getById(id: string ) {
         return this.http.get<Order>(`${environment.serverUrl}/order/${id}`)
         .pipe(map( (order: Order) => {
             return{
               ...order
-          }
-      }))
+             }
+        }))
     }
 
-    //Check how it work on server side and db
-    remove(id: string): Observable<void> {
-        console.log(id);
-        
+
+    remove(id: string): Observable<void> { 
         return this.http.delete<void>(`${environment.serverUrl}/order/${id}`)
     }
 

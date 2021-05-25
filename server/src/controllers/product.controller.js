@@ -6,8 +6,7 @@ class productController {
     const newItem = await ProductsQueries.createProductDb(req.body);
     res.json(newItem.rows[0]);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
-  //throw new Error('smth wrong with delete order')
+    throw new Error('smth wrong with create order')
     }
   }
 
@@ -16,8 +15,7 @@ class productController {
     const products = await ProductsQueries.getProductsDb();
     res.json(products.rows);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
-  //throw new Error('smth wrong with delete order')
+    throw new Error('smth wrong with get products')
     }
   }
 
@@ -27,8 +25,7 @@ class productController {
     const product = await ProductsQueries.getOneProductDb(id);
     res.json(product.rows[0]);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
-  //throw new Error('smth wrong with delete order')
+    throw new Error('smth wrong with get product')
     }
   }
 
@@ -37,8 +34,7 @@ class productController {
     const product = await ProductsQueries.editProductDb(req.body);
     res.json(product.rows[0]);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
-  //throw new Error('smth wrong with delete order')
+    throw new Error('smth wrong with edit product')
     }
   }
 
@@ -48,8 +44,7 @@ class productController {
     const product = await ProductsQueries.deleteProductDb(id);
     res.json(product.rows[0]);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
-  //throw new Error('smth wrong with delete order')
+    throw new Error('smth wrong with delete product')
     }
   }
 }

@@ -1,4 +1,6 @@
 .card {
+    max-width: 800px;
+    margin: 0 auto;
 
     h1 {
         margin: 0 auto;
@@ -22,7 +24,7 @@
         display: flex;
         flex-direction: column;
         margin: 10px;
-        border: 1px solid #000;
+        box-shadow: -4px -2px 3px #c7b9b9, 4px 2px 3px #c7b9b9;
         border-radius: 10px;
         padding: 5px;
     }

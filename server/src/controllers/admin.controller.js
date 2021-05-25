@@ -22,7 +22,7 @@ class adminController {
     if (email !== admin.email ) {
       return res.status(400).json({ message: 'You write a wrong email' })
     }
-    const validPassword = await bcrypt.compareSync(password, hashPassword) //or add this.admin.password
+    const validPassword = await bcrypt.compareSync(password, hashPassword)
 
     if (!validPassword) {
       return res.status(400).json({ message: 'Wrong password' })
@@ -31,8 +31,7 @@ class adminController {
     const token = await generateJwt(admin.email, admin.password)
 
     return res.status(200).json({token, admin})
-  } catch {  
-      console.log(res.json({token}));
+    } catch {  
       
       res.status(400).json({ message: 'Login error' })
     }

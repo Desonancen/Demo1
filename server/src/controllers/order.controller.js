@@ -1,34 +1,31 @@
 const OrdersQueries = require ("../db/dbQueriesOrders");
 
-//import { Request, Response } from 'express';
-//import {Order}  from "../Order";
-
 class orderController {
-  async createOrder (req, res) { //: Promise<void> 
+  async createOrder (req, res) { 
    try {
     const newOrder = await OrdersQueries.createOrderDb(req.body); 
     res.json(newOrder.rows[0]);
     } catch (err) {
-      console.log(err);  //Change console logs after added cath on client side
+      throw new Error('smth wrong with create order')
       }
   }
   
-  async getOrders(req, res) {    //Order[] : Promise<void> 
+  async getOrders(req, res) {   
   try {
     const orders = await OrdersQueries.getOrdersDb();
     res.json(orders.rows);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
+    throw new Error('smth wrong with get orders')
     }
   }
 
-  async getOneOrder(req, res) {       //Order  : Promise<void> 
+  async getOneOrder(req, res) {     
     const id = req.params.id;
     try {
     const order = await OrdersQueries.getOneOrderDb(id);
     res.json(order.rows[0]);
   } catch (err) {
-    console.log(err);  //Change console logs after added cath on client side
+    throw new Error('smth wrong with get order')
     }
   }
 
@@ -37,7 +34,7 @@ class orderController {
     const order = await OrdersQueries.editOrderDb(req.body);
     res.json(order.rows[0]);
     } catch (err) {
-      console.log(err);  //Change console logs after added cath on client side
+      throw new Error('smth wrong with edit order')
       }
   }
 
@@ -47,7 +44,7 @@ class orderController {
    const order = await OrdersQueries.deleteOrderDb(id);
    res.json(order.rows[0]);
     } catch (err) {
-      console.log(err);  //Change console logs after added cath on client side
+      throw new Error('smth wrong with delete order')
       }
   } 
 }
