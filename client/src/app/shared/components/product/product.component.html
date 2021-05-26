@@ -15,17 +15,17 @@
 </div>
     <div class="card-buttons">
         <div class="product-amount">
-    <label for="quantity" class="quantity-label">Product amount:</label>
-    <input *ngIf="product.avaliable" id="quantity" class="product-quantity"  [(ngModel)]="quantity" type="number" min="1" [disabled]="!product.avaliable">
+            <label for="quantity" class="quantity-label">Product amount:</label>
+            <input *ngIf="product.avaliable" id="quantity" class="product-quantity"  [(ngModel)]="quantity" type="number" min="1" [disabled]="!product.avaliable">
         </div>
         <div>
-        <button class="btn btn-primary open"
-        [routerLink]="['/order', product.id, quantity]"
-        [disabled]="!product.avaliable"
-        > 
-         Buy now  
-        </button>
-        <p>{{product.price}} USD</p>
+            <button class="btn btn-primary open"
+            [routerLink]="['/order', product.id, quantity]"
+            [disabled]="!product.avaliable"
+            > 
+             Buy now  
+            </button>
+            <p>{{product.price}} USD</p>
         </div>
     </div>
 </div>

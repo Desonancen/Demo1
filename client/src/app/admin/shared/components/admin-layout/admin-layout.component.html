@@ -3,7 +3,6 @@
     <h2>
         <a routerLink="/">Technes</a>
     </h2>
-
     <ul *ngIf="auth.isAuthenticated()">
         <li routerLinkActive="active">
             <a [routerLink]="['/admin', 'orders']">Orders List</a>

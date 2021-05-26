@@ -9,9 +9,9 @@
                 <a href="#" (click)="logout($event)">Logout</a>
             </li>
         </ul>
-                <button *ngIf="!auth.isAuthenticated()" class="btn btn-primary" [routerLink]="['/admin']">Login as Admin</button>
-
+    <button *ngIf="!auth.isAuthenticated()" class="btn btn-primary" [routerLink]="['/admin']">Login as Admin</button>
 </nav>
+
 <div class="container">
 <router-outlet></router-outlet>
 </div>

@@ -1,6 +1,6 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
         <h1>Change Order</h1>
-        <div class="card-info">
+    <div class="card-info">
         <div class="order-info">
                 <h4>Order information</h4>
             <p><b>Current address:</b> {{orders_info.delivery_address}}</p>
@@ -10,7 +10,7 @@
         <div class="product-info">
                 <h4>Product information</h4>
             <p><b>Product name:</b> {{product_info.name}}</p>
-            <p><b>Total price:</b> {{orders_info.total_price}}</p>
+            <p><b>Total price:</b> {{orders_info.total_price}} USD</p>
             <p><b>Product amount:</b> {{orders_info.product_amount}}</p>
         </div>
     </div>
@@ -19,8 +19,7 @@
                 >
                     <label for="address">Address:</label>
                     <input id="address" type="text" formControlName="address">
-                    <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" 
-                    class="validation">
+                    <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" class="validation">
                         <small *ngIf="form.get('address')?.errors?.required">Enter new delivery address</small>
                     </div>
                 </div>
@@ -30,8 +29,7 @@
                 >
                     <label for="comment">Comment:</label>
                     <textarea id="comment" type="text" formControlName="comment"></textarea>
-                    <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" 
-                    class="validation">
+                    <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" class="validation">
                         <small>Length must be less then {{form.get('comment')?.errors?.maxlength.requiredLength}} symbols
                                 Now number of symbols is {{form.get('comment')?.errors?.maxlength.actualLength}}
                         </small>

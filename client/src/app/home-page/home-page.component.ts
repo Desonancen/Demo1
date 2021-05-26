@@ -26,19 +26,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
     })
   }
 
-  remove(id: any) {
-    this.deleteSub = this.productsService.remove(id).subscribe( () => {
-      this.products = this.products.filter(products => products.id !==id)
-    })
-  }
-
   ngOnDestroy() {
     if (this.productSub) {
       this.productSub.unsubscribe()
-    }
-
-    if (this.deleteSub) {
-      this.deleteSub.unsubscribe()
     }
   }
 

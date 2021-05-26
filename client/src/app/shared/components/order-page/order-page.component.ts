@@ -40,7 +40,7 @@ export class OrderPageComponent implements OnInit {
 
     this.form = new FormGroup( {
       name: new FormControl("", [Validators.required, Validators.minLength(2)]),
-      phone: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("0[0-9]{9}")]),
+      phone: new FormControl("", [Validators.required, Validators.pattern("0[0-9]{9}")]),
       address: new FormControl("", Validators.required),
       comment: new FormControl("", Validators.maxLength(30)),
       paid: new FormControl(false),

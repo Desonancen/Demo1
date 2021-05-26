@@ -1,25 +1,24 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Order Info</h1>
-    <div class="product-info">
+<div class="product-info">
     <div class="product-left">
     <p><b>Product:</b> {{product_info.name}}</p>
     <p><b>Price for item:</b> {{product_info.price}} USD</p>
     </div>
     <div class="product-right">
-    <div class="product-amount">
-    <label for="amount" class="quantity-label"><b>Product amount:</b></label>
-    <input formControlName="amount" id="amount" class="product-quantity" (click)="onAdd()"  type="number" min="1">
+        <div class="product-amount">
+        <label for="amount" class="quantity-label"><b>Product amount:</b></label>
+        <input formControlName="amount" id="amount" class="product-quantity" (click)="onAdd()"  type="number" min="1">
+        </div>
+        <p><b>Total price:</b> {{total_price}}</p>
     </div>
-    <p><b>Total price:</b> {{total_price}}</p>
-    </div>
-    </div>
+</div>
             <div class="form-control"
             [ngClass]="{invalid: form.get('name')!.touched && form.get('name')!.invalid}"
             >
                 <label for="name">Name*:</label>
                 <input id="name" type="text" formControlName="name">
-                <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" 
-                class="validation">
+                <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="validation">
                     <small *ngIf="form.get('name')?.errors?.required">Enter name</small>
                     <small *ngIf="form.get('name')?.errors?.minlength">
                             Name must be not less than 2 symbols.
@@ -32,19 +31,10 @@
             >
                 <label for="phone">Phone*:</label>
                 <input id="phone" type="tel" formControlName="phone" placeholder="0501234321">
-                <div *ngIf="form.get('phone')!.touched && form.get('phone')!.invalid" 
-                class="validation">
+                <div *ngIf="form.get('phone')!.touched && form.get('phone')!.invalid" class="validation">
                     <small *ngIf="form.get('phone')?.errors?.required">Enter phone</small>
-                    <small *ngIf="form.get('phone')?.errors?.minlength">
-                            Phone must be not less than 10 symbols.
-                            Now number of symbols is {{form.get('phone')?.errors?.minlength.actualLength}}
-                    </small>
-                    <small *ngIf="form.get('phone')?.errors?.maxlength">
-                        Phone must be not bigger than 10 symbols.
-                        Now number of symbols is {{form.get('phone')?.errors?.maxlength.actualLength}}
-                    </small>
                     <small *ngIf="form.get('phone')?.errors?.pattern">
-                        Write correct phone number
+                        Write correct phone number. It should have 10 digits
                     </small>
                 </div>
             </div>
@@ -54,8 +44,7 @@
             >
                 <label for="address">Address*:</label>
                 <input id="address" type="text" formControlName="address">
-                <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" 
-                class="validation">
+                <div *ngIf="form.get('address')!.touched && form.get('address')!.invalid" class="validation">
                     <small *ngIf="form.get('address')?.errors?.required">Enter delivery address</small>
                 </div>
             </div>
@@ -65,8 +54,7 @@
             >
                 <label for="comment">Comment:</label>
                 <textarea id="comment" type="text" formControlName="comment"></textarea>
-                <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" 
-                class="validation">
+                <div *ngIf="form.get('comment')!.touched && form.get('comment')!.invalid" class="validation">
                     <small>Length must be less than {{form.get('comment')?.errors?.maxlength.requiredLength}} symbols
                             Now number of symbols is {{form.get('comment')?.errors?.maxlength.actualLength}}
                     </small>
