@@ -13,5 +13,29 @@ form {
         justify-content: space-between;
         margin: 10px;
         margin-top: 1rem;
+
+        .product-right, .product-left {
+            box-shadow: -4px -2px 3px #bdcdd5, 4px 2px 3px #bdcdd5;
+            background-color: #f7f7f7;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .product-quantity {
+        max-width: 40px;
+        font-size: 0.75rem;
+        margin-left: 5px;
+        border: 2px solid #bdcdd5;
+        padding: 3px;
+    }
+
+    .product-amount {
+        display: flex;
+        flex-direction: row;
     }
 }

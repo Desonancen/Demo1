@@ -43,8 +43,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
     })
 
     this.form = new FormGroup( {
-    address: new FormControl(null, Validators.required),
-    comment: new FormControl(null, Validators.maxLength(30)),
+    address: new FormControl("", Validators.required),
+    comment: new FormControl("", Validators.maxLength(30)),
     paid: new FormControl(null)
     })
 

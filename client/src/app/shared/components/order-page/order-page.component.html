@@ -1,9 +1,17 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Order Info</h1>
     <div class="product-info">
-    <p><b>Product:</b> {{this.product_info.name}}</p>
-    <p><b>Price:</b> {{total_price}} USD</p>
-    <p><b>Quantity:</b> {{this.quantity}}</p>
+    <div class="product-left">
+    <p><b>Product:</b> {{product_info.name}}</p>
+    <p><b>Price for item:</b> {{product_info.price}} USD</p>
+    </div>
+    <div class="product-right">
+    <div class="product-amount">
+    <label for="amount" class="quantity-label"><b>Product amount:</b></label>
+    <input formControlName="amount" id="amount" class="product-quantity" (click)="onAdd()"  type="number" min="1">
+    </div>
+    <p><b>Total price:</b> {{total_price}}</p>
+    </div>
     </div>
             <div class="form-control"
             [ngClass]="{invalid: form.get('name')!.touched && form.get('name')!.invalid}"

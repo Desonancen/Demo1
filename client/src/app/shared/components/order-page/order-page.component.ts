@@ -34,17 +34,23 @@ export class OrderPageComponent implements OnInit {
       this.quantity = params.quantity
       this.productsService.getById(params.id).subscribe( (response) => {
         this.product_info = response
-        this.total_price = this.quantity*this.product_info.price
+        this.total_price = this.product_info.price*this.quantity
       })
     }) 
 
     this.form = new FormGroup( {
-      name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("0[0-9]{9}")]),
-      address: new FormControl(null, Validators.required),
-      comment: new FormControl(null, Validators.maxLength(30)),
-      paid: new FormControl(false)
+      name: new FormControl("", [Validators.required, Validators.minLength(2)]),
+      phone: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("0[0-9]{9}")]),
+      address: new FormControl("", Validators.required),
+      comment: new FormControl("", Validators.maxLength(30)),
+      paid: new FormControl(false),
+      amount: new FormControl(this.quantity)
     })
+     
+  }
+
+  onAdd() {
+   this.total_price = this.form.value.amount*this.product_info.price
   }
 
   submit() {
@@ -57,9 +63,9 @@ export class OrderPageComponent implements OnInit {
       phone: this.form.value.phone,
       created_date: new Date(),
       delivery_address: this.form.value.address,
-      total_price: this.total_price,
+      total_price: this.product_info.price*this.form.value.amount,
       comment: this.form.value.comment,
-      product_amount: this.quantity,
+      product_amount: this.form.value.amount,
       paid: this.form.value.paid,
       product_id: this.product_info.id
     }
