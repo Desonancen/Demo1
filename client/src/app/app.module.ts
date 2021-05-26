@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { SearchPipe } from './shared/search-products.pipe';
 import { AlertService } from './admin/shared/services/alert.service';
+import { OrderAlertComponent } from './shared/components/order-alert/order-alert.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -27,6 +28,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     OrderPageComponent,
     ProductComponent,
     SearchPipe,
+    OrderAlertComponent
   ],
   imports: [
     BrowserModule,
