@@ -5,7 +5,4 @@
             <div class="product-cards">
                 <app-product class="" *ngFor ="let product of products | searchProducts:searchStr" [product]="product" ></app-product>
             </div>
-        <ng-template #loading>
-            <p class="text-center">Loading...</p>
-        </ng-template>
 </section>

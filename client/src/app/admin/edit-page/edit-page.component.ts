@@ -60,6 +60,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       paid: this.form.value.paid,
       id: this.orders_info.id
     }
+
     this.ordersService.update(newOrder).subscribe( () => {
       this.form.reset()
       this.alert.success('You update information about order')
@@ -69,6 +70,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    
         if (this.productSub) {
         this.productSub.unsubscribe()
       }
